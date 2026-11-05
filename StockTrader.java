@@ -15,7 +15,9 @@ public class StockTrader {
         double[] prices = new double[n];
         loadData (in, years, months, prices);
         printData (years, months, prices);
-        System.out.println(indexOfLowest(prices));
+        System.out.printf("$%.2f in %s %d",prices[indexOfLowest(prices)],monthName(months[indexOfLowest(prices)]),years[indexOfLowest(prices)]);
+        System.out.println("");
+        System.out.printf("$%.2f in %s %d",prices[indexOfHighest(prices)],monthName(months[indexOfHighest(prices)]),years[indexOfHighest(prices)]);
        
 	}
 
@@ -39,13 +41,36 @@ public class StockTrader {
 		}
 	}
 	
-	public static double indexOfLowest(double[] prices){
+	public static int indexOfLowest(double[] prices){
 		double lowestprice=100000;
+		int index=0;
 		for(int i=0; i<prices.length;i++){
 			if(prices[i]<lowestprice){
 				lowestprice = prices[i];
+				index=i;
+			}
+			if(prices[i]==lowestprice){
+				lowestprice = lowestprice;
+				index=index;
 			}
 		}
-		return lowestprice;
+		return index;
+		
+	} 
+	public static int indexOfHighest(double[] prices){
+		double highestprice=-100000;
+		int index=0;
+		for(int i=0; i<prices.length;i++){
+			if(prices[i]>highestprice){
+				highestprice = prices[i];
+				index=i;
+			}
+			if(prices[i]==highestprice){
+				highestprice = highestprice;
+				index=index;
+			}
+		}
+		return index;
+		
 	} 
 }
