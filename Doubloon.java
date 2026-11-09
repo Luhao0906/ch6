@@ -1,15 +1,23 @@
 public class Doubloon{
 	public static void main(String[] args){
-		System.out.println (isDoubloon("abzabd"));
+		System.out.println (isDoubloon("aabbcc"));
 		
 		
 		}
-	public static boolean isDoubloon(String word){
-		int length1 = word.length();
-		for (int i=0; i<length1; i++){
-			if (word.indexOf(word.charAt(i))>=0 && word.indexOf(word.charAt(i),2)>=0 && word.indexOf(word.charAt(i),3)<0)
-			return true;
-			}
-		return false;
+	public static boolean isDoubloon(String s){
+		s= s.toLowerCase();
+		for (int i=0; i<s.length();i++){
+			char letter = s.charAt(i);
+			if (letterCount(s, letter)!=2)	return false;
 		}
+		return true;
 	}
+	public static int letterCount(String s, char c){
+		int sum=0;
+		for (int i=0; i<s.length();i++){
+			char letter= s.charAt(i);
+			if (letter==c)	sum++;
+		}
+	return sum;
+	}
+}
